@@ -1,0 +1,6 @@
+const ImageCard = () =>{
+    return(
+        <>
+        </>
+    )
+}

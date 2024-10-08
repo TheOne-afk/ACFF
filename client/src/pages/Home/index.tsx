@@ -1,28 +1,21 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
-
+import Navbar from "../../components/Navbar"
+import Sidebar from "../../components/Sidebar"
+import VideoPlayer from "../../components/VideoCompo"
 const Home = () =>{
-    const [workouts,setWorkouts] = useState<any>(null)
-
-    useEffect(() =>{
-        const fetchWorkouts = async () => {
-            const response = await fetch('/api/workouts/')
-            const json = await response.json()
-
-            if(response.ok){
-                setWorkouts(json)
-            }
-        }
-        fetchWorkouts()
-    }, [])
 
     return(
-        <div>
-            <h1 className="bg-red-500" >Hello</h1>
-        {workouts && workouts.map((workout: any) => (
-            <p key={workout._id}>{workout._id === "67028163dc873dbcb6977d1e" ? workout.title : ""}</p>
-        ))}
+        <>
+        <Navbar/>
+        <div className="flex flex-row h-[calc(100vh-89.09px)] mt-[89.09px] w-100 py-5">
+            <Sidebar/>
+            <div className=" flex flex-row items-center justify-center h-100 w-[100vw]">
+            <VideoPlayer/>
+            <div className="flex flex-col gap-3">
+                
+            </div>
+            </div>
         </div>
+        </>
     )
 }
 
