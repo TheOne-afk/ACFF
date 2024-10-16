@@ -42,7 +42,7 @@ const Register = () =>{
                 type="password"
                 />
                 <PrimaryButton
-                text="Login"
+                text="Register"
                 className="rounded-full w-full py-4 text-lg"
                 />
                 <div className="relative w-full h-[1px] bg-black/50" >
