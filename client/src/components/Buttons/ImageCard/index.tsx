@@ -1,6 +1,0 @@
-const ImageCard = () =>{
-    return(
-        <>
-        </>
-    )
-}

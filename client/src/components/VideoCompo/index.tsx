@@ -1,10 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import ReactPlayer from 'react-player';
-import Video from '../../assets/videos/cattt.mp4'; // Ensure this path is correct
 import Play from "../../assets/svg/play-button-arrowhead.svg"
 import Pause from "../../assets/svg/pause.svg"
 
-const VideoPlayer = () => {
+const VideoPlayer = ({url} : {url: string}) => {
   const [indicatorVisible, setIndicatorVisible] = useState(true);
   const [playing, setPlaying] = useState(false); // Track playing state
   const [progress, setProgress] = useState(0); // Track progress (0 to 100)
@@ -48,7 +47,7 @@ const VideoPlayer = () => {
     >
       <ReactPlayer
         ref={playerRef}
-        url={Video} // Use the imported video file
+        url={url} // Use the imported video file
         width="100%"
         height="100%"
         controls={false}
