@@ -26,7 +26,7 @@ const Form = ({children}: {
                 <img className="relative left-8" src={CatImage} alt="..." height={600} width={600}/>
                 </div>
             </div>
-            <div className=" h-full bg-custom_white w-4/6 flex flex-col justify-evenly p-10 items-center" > 
+            <div className=" h-full bg-custom_white w-4/6 flex flex-col justify-evenly p-5 px-10 items-center" > 
             {children}
             </div>
         </div>
