@@ -5,7 +5,7 @@ import SecondaryButton from "../Buttons/Secondary"
 import { Link } from "react-router-dom"
 const Sidebar = () =>{
     return(
-        <div className="p-10 w-[300px] flex flex-col items-center justify-between border-r-2">
+        <div className="p-10 w-[300px] flex flex-col items-center justify-between">
             {/* Options */}
             <div className="flex flex-col gap-10" >
             <DirectSidebar
@@ -27,7 +27,7 @@ const Sidebar = () =>{
             </div>
 
             {/* Gateway Button */}
-            <Link to="signin" >
+            <Link to="/login" >
             <SecondaryButton
             text="Log In"
             />

@@ -31,17 +31,17 @@ const Home = () =>{
             <VideoPlayer url={Video} />
             {/* User Actions */}
             <div className="flex flex-col gap-3">
-                {/* Comment Action */}
-                <ClickableImage
-                action={handleCommentClick}
-                getAction={comment}
-                src={CommentIcon}
-                />
                 {/* Heart Action */}
                 <ClickableImage
                 action={handleHeartClick}
                 getAction={heart}
                 src={HeartIcon}
+                />
+                {/* Comment Action */}
+                <ClickableImage
+                action={handleCommentClick}
+                getAction={comment}
+                src={CommentIcon}
                 />
             </div>
             </div>
