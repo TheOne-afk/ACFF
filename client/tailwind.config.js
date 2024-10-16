@@ -7,7 +7,8 @@ module.exports = {
     extend: {
       colors: {
         primary: '#80AF81',
-        black: '#1E1E1E'
+        black: '#1E1E1E',
+        custom_white: '#FAFAFA'
       },
       backgroundImage: {
         'custom-gradient': 'linear-gradient(to bottom, #80AF81 34%, #88D66C 100%)',

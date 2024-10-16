@@ -17,6 +17,7 @@ const Navbar = ()=>{
                 />
                 <PrimaryButton 
                 text="Let's Feed" 
+                className='rounded-lg'
                 />
             </nav>
         </header>
