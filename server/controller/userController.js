@@ -6,7 +6,7 @@ const loginUser = async (req,res) => {
 }
 
 // register user
-const registerUser = async (req,res) => {
+const registerUser = async function(req,res){
 
     const {username,email,password} = req.body
 
@@ -19,7 +19,6 @@ const registerUser = async (req,res) => {
         res.status(400).json({error: error.message})
     }
 
-    res.json({mssg: 'register user'})
 }
 
 
