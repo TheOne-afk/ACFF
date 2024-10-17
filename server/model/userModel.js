@@ -12,7 +12,6 @@ const userSchema = new Schema({
     },
     email: {
         type: String,
-        require: true,
         unique: true
     },
     password: {
@@ -20,6 +19,7 @@ const userSchema = new Schema({
         require: true,
     }
 })
+
 
 // Register logic - this don't work then using an arrow function
 userSchema.statics.register = async function (username,email,password){
@@ -51,6 +51,25 @@ userSchema.statics.register = async function (username,email,password){
 
     return user
 
+}
+
+// Login logic
+userSchema.statics.login = async function(username,password){
+    // validation
+    if(!username  || !password) {
+        throw Error('All fields must be filled')
+    }
+    const findUser = await this.findOne({username})
+    if(!findUser){
+        throw Error('Incorrect Username')
+    }
+//                                      value      database value
+    const match = await bcrypt.compare(password, user.password)
+
+    if(!match){
+        throw Error('Incorrect password')
+    }
+    return user
 }
 
 module.exports = mongoose.model('User', userSchema)
