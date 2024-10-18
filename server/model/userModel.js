@@ -64,12 +64,12 @@ userSchema.statics.login = async function(username,password){
         throw Error('Incorrect Username')
     }
 //                                      value      database value
-    const match = await bcrypt.compare(password, user.password)
+    const match = await bcrypt.compare(password, findUser.password)
 
     if(!match){
         throw Error('Incorrect password')
     }
-    return user
+    return findUser
 }
 
 module.exports = mongoose.model('User', userSchema)
