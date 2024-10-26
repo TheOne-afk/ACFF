@@ -6,11 +6,13 @@ import TextDirect from "../../components/ClickableElement/TextDirect"
 import PrimaryButton from "../../components/Buttons/Primary"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { useSignup } from "../../hooks/useSignup"
 const Register = () =>{
     const [username,setUsername] = useState<string>('')
     const [email,setEmail] = useState<string>('')
     const [password,setPassword] = useState<string>('')
     const [cf_password,setCFpassword] = useState<string>('')
+    const {signup,error,isLoading} = useSignup()
 
     return(
         /* Body */
@@ -21,10 +23,11 @@ const Register = () =>{
 
             {/* Form Container  */}
             <div className="h-[100vh] w-100 flex justify-center items-center" >
+            {error && <div className="color-red-500" >{error}</div>}
             <Form
-            submit={async function(event){
+            submit={async (event) =>{
                 event.preventDefault()
-                console.log(username)
+                await signup(username,email,password)
             }}
             >
                 <div className=" flex flex-col justify-center items-center w-full" >
