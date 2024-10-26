@@ -2,8 +2,9 @@ import React from "react"
 import Direct from "../../ClickableElement/Direct"
 import CatImage from "../../../assets/svg/cat.svg"
 import MainIcon from "../../../assets/svg/main_icon.svg"
-const Form = ({children}: {
-    children: React.ReactNode
+const Form = ({children, submit}: {
+    children: React.ReactNode,
+    submit: (event: React.FormEvent<HTMLFormElement>) => void
 }) =>{
     return(
         <div className="w-4/6 rounded-lg shadow-2xl flex z-10 h-5/6 bg-custom_white overflow-hidden" >
@@ -26,9 +27,9 @@ const Form = ({children}: {
                 <img className="relative left-8" src={CatImage} alt="..." height={600} width={600}/>
                 </div>
             </div>
-            <div className=" h-full bg-custom_white w-4/6 flex flex-col justify-evenly p-5 px-10 items-center" > 
+            <form className=" h-full bg-custom_white w-4/6 flex flex-col justify-evenly p-5 px-10 items-center" onSubmit={submit} > 
             {children}
-            </div>
+            </form>
         </div>
     )
 }

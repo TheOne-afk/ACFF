@@ -5,7 +5,11 @@ import FormField from "../../components/Fields/FormField"
 import TextDirect from "../../components/ClickableElement/TextDirect"
 import PrimaryButton from "../../components/Buttons/Primary"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 const SignIn = () =>{
+    const [signin_username,setSigninUsername] = useState<string>('')
+    const [signin_password,setSigninPassword] = useState<string>('')
+
     return(
         /* Body */
         <div className="relative h-100 w-100 bg-[#C1CFA1]" >
@@ -15,7 +19,12 @@ const SignIn = () =>{
 
             {/* Form Container  */}
             <div className="h-[100vh] w-100 flex justify-center items-center" >
-            <Form>
+            <Form
+            submit={async function(event){
+                event.preventDefault()
+                console.log(signin_username)
+            }}
+            >
                 <div className=" flex flex-col justify-center items-center w-full0" >
                     <h1 className="text-4xl font-[1000] text-black" >Welcome Back!</h1>
                     <p className="text-sm" >Manage your cat's meals effortlessly and connect with fellow pet lovers!</p>
@@ -24,12 +33,16 @@ const SignIn = () =>{
                 placeholder="Enter your username"
                 label="Username"
                 type="text"
+                onchange={(event)=> setSigninUsername(event.target.value)}
+                value={signin_username}
                 />
                 <div className="w-full" >
                 <FormField
                 placeholder="Enter your password"
                 label="Password"
                 type="password"
+                onchange={(event)=> setSigninPassword(event.target.value)}
+                value={signin_password}
                 />
                 <TextDirect
                 link=""

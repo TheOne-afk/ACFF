@@ -5,7 +5,13 @@ import FormField from "../../components/Fields/FormField"
 import TextDirect from "../../components/ClickableElement/TextDirect"
 import PrimaryButton from "../../components/Buttons/Primary"
 import { Link } from "react-router-dom"
+import { useState } from "react"
 const Register = () =>{
+    const [username,setUsername] = useState<string>('')
+    const [email,setEmail] = useState<string>('')
+    const [password,setPassword] = useState<string>('')
+    const [cf_password,setCFpassword] = useState<string>('')
+
     return(
         /* Body */
         <div className="relative h-100 w-100 bg-[#C1CFA1]" >
@@ -15,7 +21,12 @@ const Register = () =>{
 
             {/* Form Container  */}
             <div className="h-[100vh] w-100 flex justify-center items-center" >
-            <Form>
+            <Form
+            submit={async function(event){
+                event.preventDefault()
+                console.log(username)
+            }}
+            >
                 <div className=" flex flex-col justify-center items-center w-full" >
                     <h1 className="text-4xl font-[1000] text-black" >Welcome to FeederShare!</h1>
                     <p className="text-sm text-center" >Create your account to effortlessly manage your cat's meals and join a
@@ -25,21 +36,29 @@ const Register = () =>{
                 placeholder="Enter your username"
                 label="Username"
                 type="text"
+                onchange={(event) => setUsername(event.target.value)}
+                value={username}
                 />
                 <FormField
                 placeholder="Enter your email"
                 label="Email"
                 type="email"
+                onchange={(event) => setEmail(event.target.value)}
+                value={email}
                 />
                 <FormField
                 placeholder="Enter your password"
                 label="Password"
                 type="password"
+                onchange={(event) => setPassword(event.target.value)}
+                value={password}
                 />
                 <FormField
                 placeholder="Enter your confirm password"
                 label="Confirm password"
-                type="password"
+                type="confirm_password"
+                onchange={(event) => setCFpassword(event.target.value)}
+                value={cf_password}
                 />
                 <PrimaryButton
                 text="Register"
