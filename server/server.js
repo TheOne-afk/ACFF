@@ -9,8 +9,9 @@ const cors = require('cors')
 const app = express()
 
 app.use(cors({
-    origin: ["https://acff.vercel.app"],
-    methods: ["POST","GET"],
+    origin: "https://acff.vercel.app",
+    methods: ["POST","GET","PUT","DELETE"],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }))
 
