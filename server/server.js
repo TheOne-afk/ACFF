@@ -3,9 +3,16 @@ const express = require('express')
 const mongoose = require('mongoose')
 const userRoutes = require('./routes/user')
 const router = express.Router();
+const cors = require('cors')
 
 // epxress app
 const app = express()
+
+app.use(cors({
+    origin: ["https://acff.vercel.app/"],
+    methods: ["POST","GET"],
+    credentials: true
+}))
 
 // Example user route
 router.get('/', (req, res) => {
