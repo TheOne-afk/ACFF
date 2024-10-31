@@ -9,7 +9,7 @@ const cors = require('cors')
 const app = express()
 
 // Example user route
-router.get('/', (req, res) => {
+router.get('https://acff-api.vercel.app/', (req, res) => {
     res.json("HELLO");
 });
 
