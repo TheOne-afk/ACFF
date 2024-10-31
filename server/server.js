@@ -16,7 +16,7 @@ app.use(cors({
 }))
 
 // Example user route
-router.get('/', (req, res) => {
+router.get('https://acff-api.vercel.app/', (req, res) => {
     res.json("HELLO");
 });
 
@@ -32,7 +32,7 @@ app.use((req,res,next)=>{
 app.use('/api/user', userRoutes)
 
 // connecto db
-mongoose.connect("mongodb+srv://dawan:dawan12345678@acffdb.eitoc.mongodb.net/?retryWrites=true&w=majority&appName=acffDB")
+mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
     app.listen(process.env.PORT, () =>{
         console.log('connected to db')
