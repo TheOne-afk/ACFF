@@ -16,7 +16,7 @@ app.use(cors({
 }))
 
 // Example user route
-app.get('/', (req, res) => {
+app.route('/', (req, res) => {
     res.json("HELLO");
 });
 
