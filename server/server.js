@@ -15,7 +15,7 @@ app.use((req,res,next)=>{
 })
 
 // routes
-app.use('https://acff-api.vercel.app/user', userRoutes)
+app.use('api/user', userRoutes)
 
 // connecto db
 mongoose.connect(process.env.MONGO_URI)
