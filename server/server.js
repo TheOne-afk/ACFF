@@ -16,7 +16,7 @@ app.use(cors({
 }))
 
 // Example user route
-router.get('https://acff-api.vercel.app/', (req, res) => {
+router.get('/', (req, res) => {
     res.json("HELLO");
 });
 
