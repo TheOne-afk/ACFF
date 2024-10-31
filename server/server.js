@@ -9,15 +9,15 @@ const cors = require('cors')
 const app = express()
 
 app.use(cors({
-    origin: "https://acff.vercel.app/",
+    origin: "https://acff.vercel.app",
     methods: ["POST","GET","PUT","DELETE"],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
 }))
 
 // Example user route
-router.get('/', (req, res) => {
-    res.json({ message: 'User route accessed!' });
+app.get('/', (req, res) => {
+    res.json("HELLO");
 });
 
 // middleware
@@ -29,7 +29,7 @@ app.use((req,res,next)=>{
 })
 
 // routes
-app.use('acff-api.vercel.app/api/user', userRoutes)
+app.use('/api/user', userRoutes)
 
 // connecto db
 mongoose.connect(process.env.MONGO_URI)
