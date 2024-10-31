@@ -8,13 +8,6 @@ const cors = require('cors')
 // epxress app
 const app = express()
 
-app.use(cors({
-    origin: "https://acff.vercel.app",
-    methods: ["POST","GET","PUT","DELETE"],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}))
-
 // Example user route
 router.get('/', (req, res) => {
     res.json("HELLO");
