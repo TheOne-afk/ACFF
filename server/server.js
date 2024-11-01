@@ -20,7 +20,7 @@ app.use('/', express.static(path.join(__dirname, '/public')))
 app.use('/',require('./routes/root'))
 
 // Example user route
-router.get('/', (req, res) => {
+router.use('/', (req, res) => {
     res.json({message: "HELLO"});
     console.log("Working / route")
 });
