@@ -10,7 +10,8 @@ const path = require('path')
 const app = express()
 
 app.use(cors({
-    origin: ['https://acff.vercel.app', 'https://localhost:4000'],
+    origin: ['https://acff.vercel.app', 'https://localhost:4000', 'https://acff-api.vercel.app'],
+    methods: ['GET', 'POST', 'PATCH','PUT', 'DELETE'],
     credentials: true,
     optionsSuccessStatus: 200
 }))
@@ -31,6 +32,9 @@ app.use((req,res,next)=>{
 
 // routes
 app.use('/api/user', userRoutes)
+app.use('/api/user/register', (req,res) =>{
+    res.json({ message: 'User registered!' });
+})
 
 // connecto db
 mongoose.connect('mongodb+srv://dawan:dawan12345678@acffdb.eitoc.mongodb.net/?retryWrites=true&w=majority&appName=acffDB')
