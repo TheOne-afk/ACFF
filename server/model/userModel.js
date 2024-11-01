@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const bcrypt = require('bcrypt')
 const validator = require('validator')
 
 const Schema = mongoose.Schema
@@ -43,11 +42,7 @@ userSchema.statics.register = async function (username,email,password){
         throw Error('Username or Email already uses')
     }
 
-    // hash password - genSalt(value) = the higher the number the more hard to hackers to crack the password but also it takes longer to user to signup aswell
-    const hashPass = await bcrypt.genSalt(10) // default value
-    const hash = await bcrypt.hash(password, hashPass)
-
-    const user = await this.create({username, email, password: hash})
+    const user = await this.create({username, email, password})
 
     return user
 
@@ -62,12 +57,6 @@ userSchema.statics.login = async function(username,password){
     const findUser = await this.findOne({username})
     if(!findUser){
         throw Error('Incorrect Username')
-    }
-//                                      value      database value
-    const match = await bcrypt.compare(password, findUser.password)
-
-    if(!match){
-        throw Error('Incorrect password')
     }
     return findUser
 }

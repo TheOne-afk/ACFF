@@ -4,7 +4,7 @@ import Play from "../../assets/svg/play-button-arrowhead.svg"
 import Pause from "../../assets/svg/pause.svg"
 
 const VideoPlayer = ({url} : {url: string}) => {
-  const [indicatorVisible, setIndicatorVisible] = useState(true);
+  const [indicatorVisible] = useState(true);
   const [playing, setPlaying] = useState(false); // Track playing state
   const [progress, setProgress] = useState(0); // Track progress (0 to 100)
   const [showButton, setShowButton] = useState(false) // hide and unhide play/pause button

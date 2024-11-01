@@ -11,7 +11,7 @@ const Register = () =>{
     const [email,setEmail] = useState<string>('')
     const [password,setPassword] = useState<string>('')
     const [cf_password,setCFpassword] = useState<string>('')
-    const {signup,error,isLoading} = useSignup()
+    const {signup,error} = useSignup()
 
     return(
         /* Body */
