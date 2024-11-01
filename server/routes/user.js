@@ -9,5 +9,6 @@ router.post('/login', loginUser)
 
 // register route
 router.post('/register', registerUser)
+console.log('/api/user')
 
 module.exports = router
