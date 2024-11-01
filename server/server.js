@@ -9,24 +9,22 @@ const path = require('path')
 // epxress app
 const app = express()
 
+
+
 app.use(cors({
     origin: ['https://acff.vercel.app/', 'https://acff-api.vercel.app/api/user/register'],
     credentials: true,
     optionsSuccessStatus: 200
 }))
 
-app.use('/', express.static(path.join(__dirname, '/public')))
 
-app.use('/',require('./routes/root'))
+// middleware
+app.use(express.json())
 
 // Example user route
 app.use('/', (req, res) => {
     res.json({message: "HELLO"});
-    console.log("Working / route")
 });
-
-// middleware
-app.use(express.json())
 
 app.use((req,res,next)=>{
     console.log(req.path, req.method)
