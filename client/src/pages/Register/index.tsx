@@ -22,18 +22,30 @@ const Register = () =>{
 
             {/* Form Container  */}
             <div className="h-[100vh] w-100 flex justify-center items-center" >
-            {error && <div className="color-red-500" >{error}</div>}
             <Form
             submit={async (event) =>{
                 event.preventDefault()
-                await signup(username,email,password)
+                if(password == cf_password){
+                    await signup(username,email,password)
+                    alert('Registered')
+                    setUsername('')
+                    setEmail('')
+                    setPassword('')
+                    setCFpassword('')
+                }
+                else{
+                    alert("Password not match")
+                }
             }}
             >
+
                 <div className=" flex flex-col justify-center items-center w-full" >
                     <h1 className="text-4xl font-[1000] text-black" >Welcome to FeederShare!</h1>
                     <p className="text-sm text-center" >Create your account to effortlessly manage your cat's meals and join a
                     community of passionate pet lovers!</p>
                 </div>
+                
+            {error && <div className="text-red-500" >{error}</div>}
                 <FormField
                 placeholder="Enter your username"
                 label="Username"

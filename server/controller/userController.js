@@ -3,7 +3,7 @@ const User = require('../model/userModel')
 
 const createToken = (_id) =>{
     //       payloader      the secret       user only have 3days to login and the token epxired
-  return  jwt.sign({_id}, 'adobojwtformyacff', { expiresIn: '3d' })
+  return  jwt.sign({_id}, "adobojwtformyacff", { expiresIn: '3d' })
 }
 
 // login user

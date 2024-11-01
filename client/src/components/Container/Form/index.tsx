@@ -27,7 +27,7 @@ const Form = ({children, submit}: {
                 <img className="relative left-8" src={CatImage} alt="..." height={600} width={600}/>
                 </div>
             </div>
-            <form className=" h-full bg-custom_white w-4/6 flex flex-col justify-evenly p-5 px-10 items-center" onSubmit={submit} > 
+            <form className=" h-full bg-custom_white w-4/6 flex flex-col justify-evenly p-5 px-10 items-center" onSubmit={submit} method="POST"> 
             {children}
             </form>
         </div>
