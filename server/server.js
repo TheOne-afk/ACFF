@@ -9,10 +9,8 @@ const path = require('path')
 // epxress app
 const app = express()
 
-
-
 app.use(cors({
-    origin: ['https://acff.vercel.app/', 'https://acff-api.vercel.app/api/user/register'],
+    origin: ['https://acff.vercel.app', 'https://localhost:4000'],
     credentials: true,
     optionsSuccessStatus: 200
 }))
