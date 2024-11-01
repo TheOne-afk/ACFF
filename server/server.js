@@ -8,9 +8,15 @@ const cors = require('cors')
 // epxress app
 const app = express()
 
+app.use(cors({
+    origin: ['https://acff.vercel.app/'],
+    credentials: true,
+    optionsSuccessStatus: 200
+}))
+
 // Example user route
-router.get('https://acff-api.vercel.app/', (req, res) => {
-    res.json("HELLO");
+router.get('/', (req, res) => {
+    res.json({message: "HELLO"});
 });
 
 // middleware
