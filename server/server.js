@@ -10,7 +10,7 @@ const path = require('path')
 const app = express()
 
 app.use(cors({
-    origin: ['https://acff.vercel.app/'],
+    origin: ['https://acff.vercel.app/', 'https://acff-api.vercel.app/api/user/register'],
     credentials: true,
     optionsSuccessStatus: 200
 }))
@@ -36,6 +36,7 @@ app.all('*', (req,res) => {
 // Example user route
 router.get('/', (req, res) => {
     res.json({message: "HELLO"});
+    console.log("Working / route")
 });
 
 // middleware
