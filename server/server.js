@@ -32,7 +32,9 @@ app.use((req,res,next)=>{
 })
 
 // routes
-app.use('/api/user', userRoutes)
+app.use('/api/user', (req, res) => {
+    res.json({message: "/api/user"});
+})
 
 // connecto db
 mongoose.connect('mongodb+srv://dawan:dawan12345678@acffdb.eitoc.mongodb.net/?retryWrites=true&w=majority&appName=acffDB')
