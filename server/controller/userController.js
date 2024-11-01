@@ -9,6 +9,7 @@ const createToken = (_id) =>{
 // login user
 const loginUser = async (req,res) => {
     const {username,password} = req.body
+        res.json({message: "Login api working"});
 
     try {
         const user = await User.login(username,password)
@@ -27,6 +28,7 @@ const loginUser = async (req,res) => {
 const registerUser = async function(req,res){
 
     const {username,email,password} = req.body
+    res.json({message: "Register api working"});
 
     try {
         const user = await User.register(username,email,password)
