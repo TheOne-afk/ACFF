@@ -22,7 +22,7 @@ app.use(cors({
 app.use(express.json())
 
 // Example user route
-router.use('/', (req, res) => {
+router.route('/', (req, res) => {
     res.json({message: "HELLO"});
 });
 
