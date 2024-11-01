@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const userRoutes = require('./routes/user')
-const router = express.Router();
+const router = express.Router
 const cors = require('cors')
 const path = require('path')
 
@@ -32,9 +32,7 @@ app.use((req,res,next)=>{
 })
 
 // routes
-app.use('/api/user', (req, res) => {
-    res.json({message: "/api/user"});
-})
+app.use('/api/user', userRoutes)
 
 // connecto db
 mongoose.connect('mongodb+srv://dawan:dawan12345678@acffdb.eitoc.mongodb.net/?retryWrites=true&w=majority&appName=acffDB')
