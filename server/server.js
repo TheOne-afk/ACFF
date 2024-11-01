@@ -52,7 +52,7 @@ app.use('/api/user', userRoutes)
 // connecto db
 mongoose.connect('mongodb+srv://dawan:dawan12345678@acffdb.eitoc.mongodb.net/?retryWrites=true&w=majority&appName=acffDB')
 .then(()=>{
-    app.listen(process.env.PORT, () =>{
+    app.listen(4000, () =>{
         console.log('connected to db')
     })
 })
