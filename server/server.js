@@ -8,7 +8,7 @@ const cors = require('cors')
 const app = express()
 
 app.use(cors({
-    origin: ['https://acff.vercel.app', 'https://localhost:4000', 'https://acff-api.vercel.app'],
+    origin: ['https://acff.vercel.app', 'https://localhost:4000', 'https://acff-api.vercel.app', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PATCH','PUT', 'DELETE'],
     credentials: true,
     optionsSuccessStatus: 200
