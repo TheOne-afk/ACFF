@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
-
+const bcrypt = require('bcrypt')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
@@ -42,7 +42,18 @@ userSchema.statics.register = async function (username,email,password){
         throw Error('Username or Email already uses')
     }
 
-    const user = await this.create({username, email, password})
+    // [ HASH PASSWORD ]
+    // salt = now salt is basically a random string of characters that gets added to the users password before
+    // it gets hashed and it also add a extra layer security to it because it means that if two people use the same password
+    // if the salt for each of those passwords was different then the resulting hash would be different as well so it prevents hackers from
+    // password matching if they manage to crack one since hashes for identical password will be different thanks to that salt.
+
+    const salt = await bcrypt.genSalt(10, ) // we use await because this step takes time to complete by Design.
+                                            // the first argument which is the number of rounds the higher the number the longer it will take for potential
+                                            // hackers to crack password but also it takes longer for users to signup as well. Default is 10.
+    
+    const hash = await bcrypt.hash(password, salt)
+    const user = await this.create({username, email, hash})
 
     return user
 
