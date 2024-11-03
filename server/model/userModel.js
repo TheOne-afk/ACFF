@@ -53,7 +53,7 @@ userSchema.statics.register = async function (username,email,password){
                                             // hackers to crack password but also it takes longer for users to signup as well. Default is 10.
     
     const hash = await bcrypt.hash(password, salt)
-    const user = await this.create({username, email, hash})
+    const user = await this.create({username, email, password: hash})
 
     return user
 
