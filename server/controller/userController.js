@@ -42,5 +42,18 @@ const registerUser = async function(req,res){
 
 }
 
+// get single user
+const getUser = async (req,res) =>{
+    // geting the url id whenever a user got the id from the url or type
+    const { id } = req.params
 
-module.exports = { loginUser, registerUser }
+    const user = await User.findById(id)
+
+    if (!user){
+        return res.status(404).json({error: "No such user"})
+    }
+    res.status(200).json(user)
+
+}
+
+module.exports = { loginUser, registerUser, getUser }
