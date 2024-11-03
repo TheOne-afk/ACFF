@@ -33,7 +33,7 @@ const registerUser = async function(req,res){
 
         // create a token
         const userId = user._id;
-        const token = createToken(userId.trim())
+        const token = createToken(userId)
 
         res.status(200).json({username, token})
     }
