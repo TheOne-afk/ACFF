@@ -17,7 +17,7 @@ const loginUser = async (req,res) => {
         const userIdLogin = user._id;
         const token = createToken(userIdLogin)
 
-        res.status(200).json({username, token})
+        res.status(200).json({username, token, userIdLogin})
     }
     catch (error){
         res.status(400).json({error: error.message})
@@ -58,4 +58,24 @@ const getUser = async (req,res) =>{
 
 }
 
-module.exports = { loginUser, registerUser, getUser }
+// FeederShare hardware logic
+const manualActivation = async (req,res) => {
+    // delay 
+    const DELAY = 15000
+    // get user id
+    const { id } = req.body;
+
+    // when the button activate this will executed
+    const user = await User.findByIdAndUpdate(id, { type: true })
+
+    // when the time reached this will executed
+    setTimeout(async () => {
+        await   User.findByIdAndUpdate(id, { type: false })
+    }, DELAY)
+    if (!user){
+        return res.status(500).json({ message: "Error updating type" });
+    }
+    res.status(200).json({ message: "'type' set to true, will revert to false after delay" });
+}
+
+module.exports = { loginUser, registerUser, getUser, manualActivation }

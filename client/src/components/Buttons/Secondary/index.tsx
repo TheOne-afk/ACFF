@@ -1,8 +1,11 @@
-const SecondaryButton = ({text}: {
+const SecondaryButton = ({text, className, onClick, disabled}: {
     text: string
+    className: string,
+    onClick: () => void,
+    disabled: any
 }) => {
     return(
-        <button className=" border-2 border-primary text-primary py-3 px-10 font-medium rounded-lg text-md" >{text}</button>
+        <button disabled={disabled} onClick={onClick} className={`${className} border-2 border-primary text-primary py-3 px-10 font-medium rounded-lg text-md`} >{text}</button>
     )
 }
 

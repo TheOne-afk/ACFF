@@ -6,6 +6,11 @@ import ClickableImage from "../../components/Buttons/ClickableImage"
 import CommentIcon from "../../assets/svg/comment.svg"
 import HeartIcon from "../../assets/svg/heart.svg"
 import { useState } from "react"
+import { Link } from "react-router-dom"
+import PrimaryButton from "../../components/Buttons/Primary"
+import DirectSidebar from "../../components/ClickableElement/DirectSidebar"
+import Profile from "../../assets/svg/profile.svg"
+import Homes from "../../assets/svg/profile.svg"
 const Home = () =>{
     const [comment,setComment] = useState(false)
     const [heart,setHeart] = useState(false)
@@ -15,15 +20,44 @@ const Home = () =>{
     function handleHeartClick(){
         setHeart(item => !item)
     }
+    
+
 
 
     return(
         <>
         {/* Navbar */}
-        <Navbar/>
+        <Navbar>
+        <Link to="/feed" >
+                <PrimaryButton 
+                text="Let's Feed" 
+                className='rounded-lg'
+                />
+                </Link>
+        </Navbar>
         {/* Homepage Container */}
         <div className="absolute flex flex-row h-[calc(100vh-89.09px)] mt-[89.09px] w-100">
-            <Sidebar/>
+            <Sidebar>
+                {/* Options */}
+            <div className="flex flex-col gap-10" >
+            <DirectSidebar
+            image={Homes}
+            size={28}
+            text="For You"
+            color="text-primary"
+            filter="brightness(0) saturate(100%) invert(73%) sepia(7%) saturate(1468%) hue-rotate(72deg) brightness(88%) contrast(86%)"
+            font_size="text-xl"
+            />
+            <DirectSidebar
+            image={Profile}
+            size={28}
+            text="Profile"
+            color="text-black"
+            filter="brightness(0) saturate(100%) invert(0%) sepia(86%) saturate(19%) hue-rotate(252deg) brightness(94%) contrast(76%)"
+            font_size="text-xl"
+            />
+            </div>
+            </Sidebar>
             {/* Videos Container */}
             <div className="h-100 w-[calc(100vw-300px)] p-7 overflow-auto flex items-center flex-col gap-14 snap-y snap-mandatory" >
                     {/* Wrapper of the video */}

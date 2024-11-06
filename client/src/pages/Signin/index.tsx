@@ -6,9 +6,14 @@ import TextDirect from "../../components/ClickableElement/TextDirect"
 import PrimaryButton from "../../components/Buttons/Primary"
 import { Link } from "react-router-dom"
 import { useState } from "react"
+import { useLogin } from "../../hooks/useLogin"
+import { useNavigate } from "react-router-dom"
 const SignIn = () =>{
     const [signin_username,setSigninUsername] = useState<string>('')
     const [signin_password,setSigninPassword] = useState<string>('')
+    const { login, error } = useLogin()
+    const navigate = useNavigate();
+
 
     return(
         /* Body */
@@ -22,13 +27,19 @@ const SignIn = () =>{
             <Form
             submit={async function(event){
                 event.preventDefault()
-                console.log(signin_username)
+                const result = await login(signin_username,signin_password)
+                if(result){
+                    navigate('/')
+                }
             }}
             >
                 <div className=" flex flex-col justify-center items-center w-full0" >
                     <h1 className="text-4xl font-[1000] text-black" >Welcome Back!</h1>
                     <p className="text-sm" >Manage your cat's meals effortlessly and connect with fellow pet lovers!</p>
                 </div>
+                {
+                    error && <div className="text-red-500" >{error}</div>
+                }
                 <FormField
                 placeholder="Enter your username"
                 label="Username"

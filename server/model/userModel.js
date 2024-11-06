@@ -16,7 +16,8 @@ const userSchema = new Schema({
     password: {
         type: String,
         require: true,
-    }
+    },
+    type: { type: Boolean, default: false },
 })
 
 

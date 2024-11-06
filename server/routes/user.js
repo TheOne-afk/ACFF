@@ -1,6 +1,6 @@
 const express = require('express')
 
-const { loginUser, registerUser, getUser } = require('../controller/userController')
+const { loginUser, registerUser, getUser, manualActivation } = require('../controller/userController')
 
 const router = express.Router()
 
@@ -12,5 +12,8 @@ router.post('/register', registerUser)
 
 // get user
 router.get('/:id', getUser)
+
+// FeederShare hardware - manual active
+router.patch('/toggle-type', manualActivation) 
 
 module.exports = router

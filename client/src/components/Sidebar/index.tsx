@@ -1,38 +1,45 @@
-import DirectSidebar from "../ClickableElement/DirectSidebar"
-import Home from "../../assets/svg/home.svg"
-import Profile from "../../assets/svg/profile.svg"
-import SecondaryButton from "../Buttons/Secondary"
+
+import { useAuthContext } from "../../hooks/useAuthContext"
+import SecondaryButton from "../../components/Buttons/Secondary"
+import { useLogout } from "../../hooks/useLogout"
+import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
-const Sidebar = () =>{
+const Sidebar = ({children} : {
+    children: React.ReactNode
+}) =>{
+    
+    const { user } = useAuthContext()
+    const { logout } = useLogout()
+    const navigate = useNavigate()
     return(
         <div className="p-10 w-[300px] flex flex-col items-center justify-between">
-            {/* Options */}
-            <div className="flex flex-col gap-10" >
-            <DirectSidebar
-            image={Home}
-            size={28}
-            text="For You"
-            color="text-primary"
-            filter="brightness(0) saturate(100%) invert(73%) sepia(7%) saturate(1468%) hue-rotate(72deg) brightness(88%) contrast(86%)"
-            font_size="text-xl"
-            />
-            <DirectSidebar
-            image={Profile}
-            size={28}
-            text="Profile"
-            color="text-black"
-            filter="brightness(0) saturate(100%) invert(0%) sepia(86%) saturate(19%) hue-rotate(252deg) brightness(94%) contrast(76%)"
-            font_size="text-xl"
-            />
-            </div>
-
+            {children}
+            
             {/* Gateway Button */}
+            {!user && 
             <Link to="/login" >
             <SecondaryButton
+            disabled={false}
             text="Log In"
+            className=""
+            onClick={()=>{
+            }}
             />
-            </Link>
-            
+            </Link>}
+            {
+                user &&
+               <SecondaryButton
+               disabled={false}
+               text="Log out"
+               className="border-red-400 text-red-400"
+               onClick={async ()=>{
+                const result = await logout()
+                if(result){
+                    navigate('/login')
+                }
+               }}
+               /> 
+            }
         </div>
     )
 }
