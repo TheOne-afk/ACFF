@@ -74,7 +74,7 @@ const manualActivation = async (req,res) => {
     setTimeout(async () => {
         await User.findByIdAndUpdate(user._id, { type: false });
         console.log(`User ${user._id}'s type reverted to false after delay.`);
-    }, 20000); // 20 seconds delay
+    }, 10000); // 20 seconds delay
     
     if (!user){
         return res.status(500).json({ message: "Error updating type" });
