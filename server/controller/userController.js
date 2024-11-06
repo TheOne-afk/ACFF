@@ -59,27 +59,19 @@ const getUser = async (req,res) =>{
 }
 
 // FeederShare hardware logic
-const manualActivation = async (req,res) => {
-    // get user id
-    const { id } = req.body;
-    // when the button activate this will executed
-    // when the time reached this will executed
-    const user = await User.findById(id)
+const manualActivation = async (req, res) => {
+    const { _id } = req.body;
 
-    await User.findByIdAndUpdate(user._id, { type: true });
+    // Find the user and set type to true
+    const user = await User.findByIdAndUpdate(_id, {
+        type: true
+    }, { new: true });  // Ensure you get the updated document
 
-
-
-    // After 20 seconds, revert the 'type' to false
-    setTimeout(async () => {
-        await User.findByIdAndUpdate(user._id, { type: false });
-        console.log(`User ${user._id}'s type reverted to false after delay.`);
-    }, 10000); // 20 seconds delay
-    
-    if (!user){
+    if (!user) {
         return res.status(500).json({ message: "Error updating type" });
     }
-    res.status(200).json({ message: "'type' set to true, will revert to false after delay" });
-}
+
+    res.status(200).json({ message: "'type' set to true, will revert to false after delay via MongoDB Trigger" });
+};
 
 module.exports = { loginUser, registerUser, getUser, manualActivation }
