@@ -71,6 +71,7 @@ const manualActivation = async (req,res) => {
     // when the time reached this will executed
     setTimeout(async () => {
         await   User.findByIdAndUpdate(id, { type: false })
+        res.status(200).json({ message: "type udpated to false" });
     }, DELAY)
     if (!user){
         return res.status(500).json({ message: "Error updating type" });
