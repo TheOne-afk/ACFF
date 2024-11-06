@@ -17,7 +17,7 @@ const userSchema = new Schema({
         type: String,
         require: true,
     },
-    type: { type: Boolean, default: false },
+    type: { type: Boolean, default: false }
 })
 
 

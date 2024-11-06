@@ -61,16 +61,17 @@ const getUser = async (req,res) =>{
 // FeederShare hardware logic
 const manualActivation = async (req,res) => {
     // get user id
-    const DELAY = 10000
     const { id } = req.body;
-
     // when the button activate this will executed
-    const user = await User.findByIdAndUpdate(id, { type: true })
-
     // when the time reached this will executed
-    setTimeout(async () => {
-        await User.findByIdAndUpdate(id, { type: false })
-    }, DELAY)
+    const user = await User.findByIdAndUpdate(id, {
+        type: true,
+    });
+    setTimeout( async () => {
+        await User.findByIdAndUpdate(id,{
+            type: false
+        })
+    },20000)
     if (!user){
         return res.status(500).json({ message: "Error updating type" });
     }
