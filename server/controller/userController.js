@@ -64,14 +64,18 @@ const manualActivation = async (req,res) => {
     const { id } = req.body;
     // when the button activate this will executed
     // when the time reached this will executed
-    const user = await User.findByIdAndUpdate(id, {
-        type: true,
-    });
-    setTimeout( async () => {
-        await User.findByIdAndUpdate(id,{
-            type: false
-        })
-    },20000)
+    const user = await User.findById(id)
+
+    await User.findByIdAndUpdate(user._id, { type: true });
+
+
+
+    // After 20 seconds, revert the 'type' to false
+    setTimeout(async () => {
+        await User.findByIdAndUpdate(user._id, { type: false });
+        console.log(`User ${user._id}'s type reverted to false after delay.`);
+    }, 20000); // 20 seconds delay
+    
     if (!user){
         return res.status(500).json({ message: "Error updating type" });
     }
