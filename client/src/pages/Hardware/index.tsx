@@ -17,12 +17,12 @@ export const Hardware = () =>{
 
     const handleToggleType = async () =>{
         try {
-            const res = await fetch('https://acff-api.vercel.app/api/user/toggle-type', {
+            const res = await fetch('api/user/toggle-type', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ id: userId }), // Send username instead of userId
+                body: JSON.stringify({ _id: userId }), // Send username instead of userId
             });
 
             const data = await res.json(); // Use 'res' to get the response JSON
