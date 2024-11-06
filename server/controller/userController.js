@@ -60,8 +60,6 @@ const getUser = async (req,res) =>{
 
 // FeederShare hardware logic
 const manualActivation = async (req,res) => {
-    // delay 
-    const DELAY = 15000
     // get user id
     const { id } = req.body;
 
@@ -72,7 +70,7 @@ const manualActivation = async (req,res) => {
     setTimeout(async () => {
         await   User.findByIdAndUpdate(id, { type: false })
         res.status(200).json({ message: "type udpated to false" });
-    }, DELAY)
+    }, 5000)
     if (!user){
         return res.status(500).json({ message: "Error updating type" });
     }
