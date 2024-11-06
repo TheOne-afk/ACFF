@@ -17,7 +17,7 @@ export const Hardware = () =>{
 
     const handleToggleType = async () =>{
         try {
-            const res = await fetch('api/user/toggle-type', {
+            const res = await fetch('https://acff-api.vercel.app/api/user/toggle-type', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
