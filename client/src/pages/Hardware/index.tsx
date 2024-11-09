@@ -31,7 +31,7 @@ export const Hardware = () =>{
                 setIsLoading(true)
                 setTimeout(()=>{
                     setIsLoading(false)
-                }, 15000)
+                }, 5000)
             } else {
                 console.log(data); // Log the error message
             }
