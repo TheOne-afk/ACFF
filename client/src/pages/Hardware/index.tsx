@@ -4,20 +4,16 @@ import PrimaryButton from "../../components/Buttons/Primary"
 import Sidebar from "../../components/Sidebar"
 import SecondaryButton from "../../components/Buttons/Secondary"
 import { useAuthContext } from "../../hooks/useAuthContext"
-import { response } from "express"
 import { useState } from "react"
 export const Hardware = () =>{
     const { user } = useAuthContext() 
     const userId = user?.userIdLogin
     const [ isLoadng, setIsLoading ] = useState<boolean>(false)
-    /* 
-        For hosted website use this fetch:  https://acff-api.vercel.app/api/user/toggle-type
-        for local website use this fetch: /api/user/toggle-type
-        */
+     
 
     const handleToggleType = async () =>{
         try {
-            const res = await fetch('https://acff-api.vercel.app/api/user/toggle-type', {
+            const res = await fetch('/api/user/toggle-type', {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,6 +75,13 @@ export const Hardware = () =>{
                 />
             </div>
             </Sidebar>
+            <div>
+            <img 
+    src="http://192.168.100.33:81/stream" 
+    alt="ESP32-CAM Stream" 
+    style={{ width: "100%", maxHeight: '500px', border: '1px solid black' }} 
+/>
+            </div>
         </div>
         </>
     )

@@ -16,4 +16,8 @@ router.get('/:id', getUser)
 // FeederShare hardware - manual active
 router.patch('/toggle-type', manualActivation) 
 
+router.get("/stream", (req, res) => {
+    res.redirect(`http://192.168.100.32/stream`);
+  });
+
 module.exports = router
