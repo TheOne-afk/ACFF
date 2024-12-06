@@ -77,7 +77,7 @@ export const Hardware = () =>{
             </Sidebar>
             <div>
             <img 
-    src="https://90c4-61-245-121-35.ngrok-free.app/mjpeg/1" 
+    src="https://42aa-180-191-32-69.ngrok-free.app/mjpeg/1" 
     alt="ESP32-CAM Stream" 
     style={{ width: "100%", maxHeight: '500px', border: '1px solid black' }} 
 />
