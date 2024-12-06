@@ -28,7 +28,7 @@ const Home = () =>{
         <>
         {/* Navbar */}
         <Navbar>
-        <Link to="/feed" >
+        <Link to="/wifi" >
                 <PrimaryButton 
                 text="Let's Feed" 
                 className='rounded-lg'

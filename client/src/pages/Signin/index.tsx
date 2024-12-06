@@ -28,9 +28,7 @@ const SignIn = () =>{
             submit={async function(event){
                 event.preventDefault()
                 const result = await login(signin_username,signin_password)
-                if(result){
-                    navigate('/')
-                }
+                
             }}
             >
                 <div className=" flex flex-col justify-center items-center w-full0" >
@@ -38,7 +36,11 @@ const SignIn = () =>{
                     <p className="text-sm" >Manage your cat's meals effortlessly and connect with fellow pet lovers!</p>
                 </div>
                 {
-                    error && <div className="text-red-500" >{error}</div>
+                    error && <div className="bg-red-500/70 w-full p-2 rounded text-center font-medium text-custom_white" >
+                        <span>
+                        {error}
+                        </span>
+                    </div>
                 }
                 <FormField
                 placeholder="Enter your username"
@@ -54,10 +56,6 @@ const SignIn = () =>{
                 type="password"
                 onchange={(event)=> setSigninPassword(event.target.value)}
                 value={signin_password}
-                />
-                <TextDirect
-                link=""
-                text="Forgot password?"
                 />
                 </div>
                 <PrimaryButton

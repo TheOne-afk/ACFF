@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import SignIn from './pages/Signin';
 import Register from "./pages/Register"
 import Hardware from './pages/Hardware';
+import WiFiConnection from './pages/WiFiConnection';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path='login' element={<SignIn  />}></Route>
         <Route path='register' element={<Register />}></Route>
         <Route path='feed' element={<Hardware />}></Route>
+        <Route path='wifi' element={<WiFiConnection />}></Route>
       </Routes>
       </BrowserRouter>
     </div>

@@ -11,7 +11,10 @@ const Register = () =>{
     const [email,setEmail] = useState<string>('')
     const [password,setPassword] = useState<string>('')
     const [cf_password,setCFpassword] = useState<string>('')
-    const {signup,error} = useSignup()
+    const [cf_password_error,setCFPasswordError] = useState<boolean>(false)
+    const [success,setSuccess] = useState<boolean>(false)
+    const {signup,error,isLoading} = useSignup()
+    console.log(success)
 
     return(
         /* Body */
@@ -25,17 +28,22 @@ const Register = () =>{
             <Form
             submit={async (event) =>{
                 event.preventDefault()
-                if(password == cf_password){
-                    await signup(username,email,password)
-                    alert('Registered')
+                    if(password !== cf_password){
+                        setCFPasswordError(true)
+                        return
+                    }
+                    else{
+                            await signup(username,email,password).then(()=>{
+                                if(error){
+                                    setSuccess(true)
+                                }
+                            })
+                    }
+
                     setUsername('')
                     setEmail('')
                     setPassword('')
                     setCFpassword('')
-                }
-                else{
-                    alert("Password not match")
-                }
             }}
             >
 
@@ -45,7 +53,15 @@ const Register = () =>{
                     community of passionate pet lovers!</p>
                 </div>
                 
-            {error && <div className="text-red-500" >{error}</div>}
+            {error && <div className="bg-red-500/70 w-full p-2 rounded text-center font-medium text-custom_white" >
+               
+                        <span>{error}</span>
+                    
+                </div> 
+            }
+            {success && < div className="bg-green-500/70 w-full p-2 rounded text-center font-medium text-custom_white" >
+                <span>Welcome to FeederShare!</span>
+            </div> }
                 <FormField
                 placeholder="Enter your username"
                 label="Username"
@@ -74,9 +90,14 @@ const Register = () =>{
                 onchange={(event) => setCFpassword(event.target.value)}
                 value={cf_password}
                 />
+                {
+                    cf_password_error && <div className="w-full flex justify-start" >
+                        <h5 className="text-sm text-red-500 " >Password not match</h5>
+                    </div>
+                }
                 <PrimaryButton
                 text="Register"
-                className="rounded-full w-full py-4 text-lg"
+                className={`${isLoading ? "brightness-50 cursor-not-allowed" : ""} rounded-full w-full py-4 text-lg `}
                 />
                 <div className="relative w-full h-[1px] bg-black/50" >
                     <span className="absolute px-4 left-1/2 top-1/2 bg-custom_white -translate-x-1/2 -translate-y-1/2" >or</span>
