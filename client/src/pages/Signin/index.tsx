@@ -30,7 +30,9 @@ const SignIn = () =>{
                 const result = await login(signin_username,signin_password)
                 if(result){
 
-                    navigate('/')
+                    if(error){
+                        navigate('/')
+                    }
                 }
                 
                 
