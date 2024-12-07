@@ -27,9 +27,9 @@ const SignIn = () =>{
             <Form
             submit={async function(event){
                 event.preventDefault()
-                await login(signin_username,signin_password)
-
-                    if(error){
+                const result = await login(signin_username,signin_password)
+                    
+                    if(result){
                         navigate('/')
                     }
                 
