@@ -63,7 +63,7 @@ export const WiFiConnection = () =>{
             />
             </div>
             </Sidebar>
-            {userId == "67279a1b9d7e749a9b328b9c" ? (
+            {userId == "674d5e46c3dbf924899a41d4" ? (
                 <div className="w-full h-full flex flex-col justify-center items-center pr-64" >
                     <img src={WiFiCat} alt="cat" height={400} width={400}/>
                 <div className="h-fit w-fit flex flex-col gap-5" >
