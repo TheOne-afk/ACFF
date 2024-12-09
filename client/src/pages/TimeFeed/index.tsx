@@ -47,7 +47,7 @@ export const TimeFeed = () =>{
                 />
                 </Link>
         </Navbar>
-        <div className="absolute flex flex-row h-[calc(100vh-89.09px)] mt-[89.09px] w-100">
+        <div className="absolute flex flex-row justify-between h-[calc(100vh-89.09px)] mt-[89.09px] w-full">
             <Sidebar>
             <div className="flex flex-col gap-10" >
             <SecondaryButton
@@ -76,13 +76,8 @@ export const TimeFeed = () =>{
                 />
             </div>
             </Sidebar>
-            <div>
-            <div className="w-full bg-blue-500" >
+            <div className="w-full py-10 px-10 h-full" >
                 <ClockComponent/>
-            </div>
-            <div>
-
-            </div>
             </div>
         </div>
         </>

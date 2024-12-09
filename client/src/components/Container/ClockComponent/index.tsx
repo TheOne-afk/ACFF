@@ -13,6 +13,7 @@ const TimeCarousel = () => {
   const [timeList, setTimeList] = useState<string[]>([]); // List to store the set times
   const [error, setError] = useState(null);
   const userId = user?.userIdLogin
+  const [currentTime, setCurrentTime] = useState<boolean>(false);
 
   useEffect(()=>{
       const fetchTimes = async () => {
@@ -155,7 +156,7 @@ const TimeCarousel = () => {
     const currentTime = `${hour.toString().padStart(2, '0')}:${minute
       .toString()
       .padStart(2, '0')}:${second.toString().padStart(2, '0')} ${amPm}`;
-    return time === currentTime ? ' ← Current Time' : '';
+    return time === currentTime;
   };
 
   const sortedTimeList = timeList.sort((a, b) => {
@@ -171,88 +172,79 @@ const TimeCarousel = () => {
   });
 
   return (
-    <div className="flex flex-col justify-center items-center space-y-4 w-full bg-red-500">
-      <div className='flex' >
-        {/* Hour Carousel */}
+    <div className="flex flex-col justify-between pt-36 items-center w-full h-full select-none">
+      <div className='flex justify-between w-full' >
+      <div className='flex justify-center items-center h-full w-full' >
+      <div className='relative flex flex-row gap-12 justify-center w-full' >
+
+      <div className='absolute -top-10 bg-primary w-10/12 h-1 rounded-full' ></div>
+        <div className='absolute -bottom-10 bg-primary w-10/12 h-1 rounded-full' ></div>
+
+          {/* Hour Carousel */}
       <div
         className="relative flex justify-center items-center cursor-grab select-none"
         onMouseDown={(e) => handleDrag(e, 'hour')}
-        style={{
-          width: '100px',
-          height: '150px',
-          border: '2px solid #000',
-          borderRadius: '10px',
-          overflow: 'hidden',
-        }}
       >
+
         {/* Upper Indicator: Next Hour */}
-        <div className="absolute top-0 left-0 w-full text-3xl flex justify-center items-center opacity-50">
-          <div>{(hour % 12 === 0 ? 12 : (hour % 12) + 1).toString().padStart(2, '0')}</div>
+        <div className="absolute -top-36 left-0 w-full text-7xl flex justify-center items-center opacity-50">
+          <div>{((hour + 1) % 12 === 0 ? 12 : (hour % 12) + 1).toString().padStart(2, '0')}</div>
         </div>
 
         {/* Current Hour */}
-        <div className="flex justify-center items-center text-4xl z-10">
+        <div className="flex justify-center font-semibold text-primary items-center text-8xl z-10">
           {hour.toString().padStart(2, '0')}
         </div>
 
         {/* Lower Indicator: Previous Hour */}
-        <div className="absolute bottom-0 left-0 w-full text-3xl flex justify-center items-center opacity-50">
+        <div className="absolute -bottom-36 left-0 w-full text-7xl flex justify-center items-center opacity-50">
           <div>{(hour === 1 ? 12 : hour - 1).toString().padStart(2, '0')}</div>
         </div>
       </div>
-
+      <div className="flex justify-center items-center font-semibold text-primary text-8xl z-10">
+          :
+        </div>
       {/* Minute Carousel */}
       <div
         className="relative flex justify-center items-center cursor-grab select-none"
         onMouseDown={(e) => handleDrag(e, 'minute')}
-        style={{
-          width: '100px',
-          height: '150px',
-          border: '2px solid #000',
-          borderRadius: '10px',
-          overflow: 'hidden',
-        }}
       >
         {/* Upper Indicator: Next Minute */}
-        <div className="absolute top-0 left-0 w-full text-3xl flex justify-center items-center opacity-50">
+        <div className="absolute -top-36 left-0 w-full text-7xl flex justify-center items-center opacity-50">
           <div>{(minute + 1) % 60 === 0 ? 59 : (minute + 1).toString().padStart(2, '0')}</div>
         </div>
 
         {/* Current Minute */}
-        <div className="flex justify-center items-center text-4xl z-10">
+        <div className="flex justify-center font-semibold text-primary items-center text-8xl z-10">
           {minute.toString().padStart(2, '0')}
         </div>
 
         {/* Lower Indicator: Previous Minute */}
-        <div className="absolute bottom-0 left-0 w-full text-3xl flex justify-center items-center opacity-50">
+        <div className="absolute -bottom-36 left-0 w-full text-7xl flex justify-center items-center opacity-50">
           <div>{minute === 0 ? 59 : (minute - 1).toString().padStart(2, '0')}</div>
         </div>
       </div>
 
+      <div className="flex justify-center items-center font-semibold text-primary text-8xl z-10">
+          :
+        </div>
       {/* Second Carousel */}
       <div
         className="relative flex justify-center items-center cursor-grab select-none"
         onMouseDown={(e) => handleDrag(e, 'second')}
-        style={{
-          width: '100px',
-          height: '150px',
-          border: '2px solid #000',
-          borderRadius: '10px',
-          overflow: 'hidden',
-        }}
       >
         {/* Upper Indicator: Next Second */}
-        <div className="absolute top-0 left-0 w-full text-3xl flex justify-center items-center opacity-50">
+        <div className="absolute -top-36 left-0 w-full text-7xl flex justify-center items-center opacity-50">
           <div>{(second + 1) % 60 === 0 ? 59 : (second + 1).toString().padStart(2, '0')}</div>
         </div>
 
         {/* Current Second */}
-        <div className="flex justify-center items-center text-4xl z-10">
+        <div className="flex justify-center font-semibold text-primary items-center text-8xl z-10">
           {second.toString().padStart(2, '0')}
         </div>
 
         {/* Lower Indicator: Previous Second */}
-        <div className="absolute bottom-0 left-0 w-full text-3xl flex justify-center items-center opacity-50">
+        <div className="absolute -bottom-36 left-0 w-full text-7xl flex justify-center items-center opacity-50">
           <div>{second === 0 ? 59 : (second - 1).toString().padStart(2, '0')}</div>
         </div>
       </div>
@@ -261,45 +253,40 @@ const TimeCarousel = () => {
       <div
         className="relative flex justify-center items-center cursor-grab select-none"
         onMouseDown={(e) => handleDrag(e, 'ampm')}
-        style={{
-          width: '100px',
-          height: '150px',
-          border: '2px solid #000',
-          borderRadius: '10px',
-          overflow: 'hidden',
-        }}
       >
         {/* Upper Indicator: AM */}
         <div
-          className={`absolute top-0 left-0 w-full text-3xl flex justify-center items-center opacity-50 ${
+          className={`absolute -top-36 left-0 w-full text-7xl flex justify-center items-center opacity-50 ${
             amPmVisibility === 'upper' ? '' : 'hidden'
           }`}
         >
-          
+         PM 
         </div>
 
         {/* Current AM/PM */}
-        <div className="flex justify-center items-center text-4xl z-10">{amPm}</div>
+        <div className="flex justify-center items-center font-semibold text-primary text-8xl z-10">{amPm}</div>
 
         {/* Lower Indicator: PM */}
         <div
-          className={`absolute bottom-0 left-0 w-full text-3xl flex justify-center items-center opacity-50 ${
+          className={`absolute -bottom-36 left-0 w-full text-7xl flex justify-center items-center opacity-50 ${
             amPmVisibility === 'lower' ? '' : 'hidden'
           }`}
         >
           AM
         </div>
       </div>
+      </div>
+      </div>
       
       {/* Display Time List */}
-      <div className="mt-4">
-        <h3 className="font-semibold text-xl">Time List:</h3>
-        <ul>
+      <div className="mt-4 gap-5 flex flex-col h-full">
+        <h3 className="font-semibold text-3xl">Schedule</h3>
+        <ul className='flex flex-col gap-3' > 
           {sortedTimeList.map((time, index) => (
             <li key={index}>
               <button
                 onClick={() => handleClickTime(time)}
-                className="text-lg hover:bg-gray-200 rounded p-2"
+                className={`${getCurrentTimeLabel(time) ? "bg-primary text-custom_white hover:brightness-75 " : "text-black hover:bg-gray-200"} rounded-full text-xl font-semibold px-4 py-2  whitespace-pre p-2`}
               >
                 {time}
                 {getCurrentTimeLabel(time)}
@@ -308,12 +295,19 @@ const TimeCarousel = () => {
           ))}
         </ul>
       </div>
+      
+      </div>
+      
+      {/* Set Time Button */}
+      <div className='w-full flex flex-row justify-evenly mt-16  pr-20' >
+      <button onClick={handleSetTime} className="bg-primary font-semibold text-2xl hover:brightness-75 text-white px-20 py-4 rounded-lg">
+        SET
+      </button>
+      <button onClick={handleSetTime} className="bg-red-500/90 font-semibold text-2xl hover:brightness-75 text-white px-20 py-4 rounded-lg">
+        REMOVE
+      </button>
       </div>
 
-      {/* Set Time Button */}
-      <button onClick={handleSetTime} className="bg-blue-500 text-white px-4 py-2 rounded">
-        Set Time
-      </button>
     </div>
   );
 };
