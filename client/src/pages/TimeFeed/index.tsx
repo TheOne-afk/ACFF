@@ -4,8 +4,9 @@ import PrimaryButton from "../../components/Buttons/Primary"
 import Sidebar from "../../components/Sidebar"
 import SecondaryButton from "../../components/Buttons/Secondary"
 import { useAuthContext } from "../../hooks/useAuthContext"
-import { useState } from "react"
-export const Hardware = () =>{
+import { useEffect, useState } from "react"
+import ClockComponent from '../../components/Container/ClockComponent'
+export const TimeFeed = () =>{
     const { user } = useAuthContext() 
     const userId = user?.userIdLogin
     const [ isLoadng, setIsLoading ] = useState<boolean>(false)
@@ -76,15 +77,16 @@ export const Hardware = () =>{
             </div>
             </Sidebar>
             <div>
-            <img 
-    src="http://192.168.100.33/mjpeg/1" 
-    alt="ESP32-CAM Stream" 
-    style={{ width: "100%", maxHeight: '500px', border: '1px solid black' }} 
-/>
+            <div className="w-full bg-blue-500" >
+                <ClockComponent/>
+            </div>
+            <div>
+
+            </div>
             </div>
         </div>
         </>
     )
 }
 
-export default Hardware
+export default TimeFeed

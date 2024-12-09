@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken')
 const User = require('../model/userModel')
+const { TimeModel } = require('../model/timeModel')
 
 const createToken = (_id) =>{
     //       payloader      the secret       user only have 3days to login and the token epxired
@@ -58,7 +59,7 @@ const getUser = async (req,res) =>{
 
 }
 
-// FeederShare hardware logic
+// FeederShare hardware (Logic) - Manual Feed
 const manualActivation = async (req, res) => {
     const { _id } = req.body;
 
@@ -74,4 +75,47 @@ const manualActivation = async (req, res) => {
     res.status(200).json({ message: "'type' set to true, will revert to false after delay via MongoDB Trigger" });
 };
 
-module.exports = { loginUser, registerUser, getUser, manualActivation }
+// FeederShare hardware (Logic) - GET Timed Feed
+const getTimedFeed = async (req, res) => {
+    const { id: userId } = req.params;
+  
+    if (!userId) {
+      return res.status(400).json({ error: "User ID is required." });
+    }
+  
+    try {
+      // Find times for the specific user, sorted by 'time'
+      const times = await TimeModel.find({ userId }).sort({ time: 1 });
+  
+      if (!times.length) {
+        return res.status(404).json({ message: "No times found for this user." });
+      }
+  
+      res.status(200).json(times);
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };
+  
+  
+
+const postTimedFeed = async (req,res) => {
+    const {userId, time} = req.body
+    if (!userId || !time) {
+        return res.status(400).json({ message: 'User ID and time are required.' });
+      }
+    try{
+        const newTime = new TimeModel({
+            userId,
+            time,
+        });
+        await newTime.save()
+
+        res.status(201).json({ message: 'Time added successfully!', data: newTime });
+    }
+    catch(err){
+        res.status(500).json({ error: err.message });
+    }
+}
+
+module.exports = { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed }
