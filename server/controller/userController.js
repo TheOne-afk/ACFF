@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 const User = require('../model/userModel')
-const { TimeModel } = require('../model/timeModel')
+const { Time, TimeModel } = require('../model/timeModel')
 
 const createToken = (_id) =>{
     //       payloader      the secret       user only have 3days to login and the token epxired
@@ -118,4 +118,30 @@ const postTimedFeed = async (req,res) => {
     }
 }
 
-module.exports = { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed }
+const deleteTimedFeed = async (req,res) => {
+    const { userId, time } = req.body;
+
+  if (!userId || !time) {
+    return res.status(400).json({ message: 'User ID and time are required' });
+  }
+
+  try {
+    // Find the time entry for the user
+    const timeRecord = await TimeModel.findOne({ userId, time });
+
+    if (!timeRecord) {
+      return res.status(404).json({ message: 'Time entry not found for this user' });
+    }
+
+    // Delete the time record
+    await TimeModel.deleteOne({ userId, time });
+
+    res.status(200).json({ message: 'Time deleted successfully' });
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error deleting time', error: error.message });
+  }
+}
+
+module.exports = { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed }

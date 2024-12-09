@@ -13,7 +13,7 @@ const TimeCarousel = () => {
   const [timeList, setTimeList] = useState<string[]>([]); // List to store the set times
   const [error, setError] = useState(null);
   const userId = user?.userIdLogin
-  const [currentTime, setCurrentTime] = useState<boolean>(false);
+  const [deleteTime, deleteSetTime] = useState<string>('');
 
   useEffect(()=>{
       const fetchTimes = async () => {
@@ -171,6 +171,33 @@ const TimeCarousel = () => {
     return to24HourFormat(a) - to24HourFormat(b);
   });
 
+  const handleDeleteTime = async (time: any) => {
+    const userId = user?.userIdLogin
+    try{
+        const response = await fetch('api/user/delete-time',{
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                userId: userId,
+                time: time
+            })
+        })
+
+        const result = await response.json();
+      if (response.ok) {
+        // Remove the deleted time from the list
+        setTimeList((prevList) => prevList.filter((t) => t !== time));
+      } else {
+        setError(result.message);
+      }
+    }
+    catch(error){
+        console.error(error)
+    }
+  }
+
   return (
     <div className="flex flex-col justify-between pt-36 items-center w-full h-full select-none">
       <div className='flex justify-between w-full' >
@@ -285,7 +312,11 @@ const TimeCarousel = () => {
           {sortedTimeList.map((time, index) => (
             <li key={index}>
               <button
-                onClick={() => handleClickTime(time)}
+                onClick={() => {
+                    handleClickTime(time)
+                    deleteSetTime(time)
+
+                }}
                 className={`${getCurrentTimeLabel(time) ? "bg-primary text-custom_white hover:brightness-75 " : "text-black hover:bg-gray-200"} rounded-full text-xl font-semibold px-4 py-2  whitespace-pre p-2`}
               >
                 {time}
@@ -303,7 +334,9 @@ const TimeCarousel = () => {
       <button onClick={handleSetTime} className="bg-primary font-semibold text-2xl hover:brightness-75 text-white px-20 py-4 rounded-lg">
         SET
       </button>
-      <button onClick={handleSetTime} className="bg-red-500/90 font-semibold text-2xl hover:brightness-75 text-white px-20 py-4 rounded-lg">
+      <button onClick={()=>{
+        handleDeleteTime(deleteTime)
+      }} className="bg-red-500/90 font-semibold text-2xl hover:brightness-75 text-white px-20 py-4 rounded-lg">
         REMOVE
       </button>
       </div>
