@@ -7,6 +7,7 @@ import Register from "./pages/Register"
 import Hardware from './pages/Hardware';
 import WiFiConnection from './pages/WiFiConnection';
 import ClockComponent from './pages/TimeFeed';
+import FeedLogs from './pages/FeedLogs';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='feed' element={<Hardware />}></Route>
         <Route path='wifi' element={<WiFiConnection />}></Route>
         <Route path='clock' element={<ClockComponent />}></Route>
+        <Route path='logs' element={<FeedLogs />}></Route>
 
       </Routes>
       </BrowserRouter>

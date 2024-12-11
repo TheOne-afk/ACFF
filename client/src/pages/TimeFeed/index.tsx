@@ -50,20 +50,36 @@ export const TimeFeed = () =>{
         <div className="absolute flex flex-row justify-between h-[calc(100vh-89.09px)] mt-[89.09px] w-full">
             <Sidebar>
             <div className="flex flex-col gap-10" >
+            <Link to='/feed' >
             <SecondaryButton
                 text="Feed Now"
-                className={`${isLoadng && 'bg-primary/50 cursor-not-allowed' } text-white border-0 bg-primary`}
-                onClick={handleToggleType}
+                className={`${isLoadng && 'bg-primary/50 cursor-not-allowed' } text-white w-full border-0 bg-primary`}
+                onClick={(() => {
+                    
+                })}
                 disabled={isLoadng}
                 />
+            </Link>
+                <Link to="/clock" >
                 <SecondaryButton
                 text="Timed Feed"
-                className="text-white border-0 bg-primary"
+                className="text-white w-full border-0 bg-primary"
                 onClick={()=>{
                     
                 }}
                 disabled={false}
                 />
+                </Link>
+                <Link to='/logs' >
+                <SecondaryButton
+                text="Feed Logs"
+                className="w-full"
+                onClick={() => {
+
+                }}
+                disabled={false}
+                />
+                </Link>
             <hr className=" border-black/20" />
             <p className="text-sm text-black/40" >Captured something on camera? Click "View Records" to watch the footage instantly!</p>
             <SecondaryButton
@@ -76,7 +92,7 @@ export const TimeFeed = () =>{
                 />
             </div>
             </Sidebar>
-            <div className="w-full py-10 px-10 h-full" >
+            <div className="py-10 pr-16 h-full" >
                 <ClockComponent/>
             </div>
         </div>

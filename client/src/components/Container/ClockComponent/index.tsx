@@ -200,7 +200,7 @@ const TimeCarousel = () => {
 
   return (
     <div className="flex flex-col justify-between pt-36 items-center w-full h-full select-none">
-      <div className='flex justify-between w-full' >
+      <div className='flex justify-between gap-24 w-full' >
       <div className='flex justify-center items-center h-full w-full' >
       <div className='relative flex flex-row gap-12 justify-center w-full' >
 
