@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const User = require('../model/userModel')
 const { Time, TimeModel } = require('../model/timeModel')
+const { LogsTime } = require('../model/timeLogsModel')
 
 const createToken = (_id) =>{
     //       payloader      the secret       user only have 3days to login and the token epxired
@@ -144,4 +145,21 @@ const deleteTimedFeed = async (req,res) => {
   }
 }
 
-module.exports = { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed }
+const logsTimeFeed = async (req,res) => {
+  const {userId, timestamp, status} = req.body
+    try{
+        const newLogs = new LogsTime({
+            userId,
+            timestamp,
+            status
+        });
+        await newLogs.save()
+
+        res.status(201).json({ message: 'Time added successfully!', data: newLogs });
+    }
+    catch(err){
+        res.status(500).json({ error: err.message });
+    }
+}
+
+module.exports = { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed, logsTimeFeed }
