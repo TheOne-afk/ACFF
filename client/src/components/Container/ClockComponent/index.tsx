@@ -18,7 +18,7 @@ const TimeCarousel = () => {
   useEffect(()=>{
       const fetchTimes = async () => {
           try{
-            const response = await fetch(`/api/user/${userId}/get-times`,{
+            const response = await fetch(`https://acff-api.vercel.app/api/user/${userId}/get-times`,{
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
@@ -104,7 +104,7 @@ const TimeCarousel = () => {
     setTimeSet(newTime);
 
     try{
-        await fetch("/api/user/set-time", {
+        await fetch("https://acff-api.vercel.app/api/user/set-time", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -174,7 +174,7 @@ const TimeCarousel = () => {
   const handleDeleteTime = async (time: any) => {
     const userId = user?.userIdLogin
     try{
-        const response = await fetch('api/user/delete-time',{
+        const response = await fetch('https://acff-api.vercel.app/api/user/delete-time',{
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
