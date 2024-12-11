@@ -188,28 +188,43 @@ const getLogsTimedFeed = async (req, res) => {
 };
 
 const esp32CamID = async (req, res) => {
-  const { userID, esp32ID } = req.body;
+  const { userId, esp32ID, wifiConnectTime } = req.body;
 
-  const esp32data = await esp32.findOneAndUpdate(
-    { userId: userID }, // Find document by userId
-    { 
-      userId: userID,    // Ensure userId is set if no match is found
-      esp32ID: esp32ID   // Set or update the esp32ID
-    },
-    { 
-      new: true,         // Return the updated document (or newly inserted one)
-      upsert: true       // Insert a new document if no match is found
-    });
-  if (!esp32data) {
-    return res.status(500).json({ message: "User not found or update failed" });
+  // Check if userId exists and is valid (string format)
+  if (!userId) {
+    return res.status(400).json({ message: "userId is required and cannot be null" });
   }
 
-  res.status(200).json({
-    message: esp32data ? "ESP32 ID updated successfully" : "New ESP32 ID inserted successfully",
-    esp32data
-  });
+  // If lastUpdated is not provided, set it to null
+  const wifiConnectTimeValue = wifiConnectTime || null;
 
-  res.status(200).json({ message: "ESP32 ID updated successfully", esp32data });
+  try {
+    // Perform the update operation, ensuring that userId is set as a string
+    const esp32data = await esp32.findOneAndUpdate(
+      { userId: userId }, // Find document by string userId
+      { 
+        userId: userId,     // Set or update the userId as string
+        esp32ID: esp32ID,   // Set or update the esp32ID
+        wifiConnectTime: wifiConnectTimeValue // Set lastUpdated to null if not provided
+      },
+      { 
+        new: true,           // Return the updated document (or newly inserted one)
+        upsert: true         // Insert a new document if no match is found
+      });
+
+    // Check if data was found or inserted successfully
+    if (esp32data) {
+      res.status(200).json({
+        message: "ESP32 ID updated successfully or new entry inserted",
+        esp32data
+      });
+    } else {
+      res.status(500).json({ message: "Failed to insert or update ESP32 data" });
+    }
+  } catch (error) {
+    console.error("Error during ESP32 ID update:", error);
+    res.status(500).json({ message: "Server error during update" });
+  }
 };
 
 module.exports = { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed, logsTimeFeed, getLogsTimedFeed, esp32CamID }

@@ -3,10 +3,12 @@ const Schema = mongoose.Schema
 
 const esp32Model = new Schema({
     userId: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+        type: String
     },
     esp32ID: {
+        type: String
+    },
+    wifiConnectTime: {
         type: String
     }
 })
