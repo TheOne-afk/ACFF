@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken')
 const User = require('../model/userModel')
 const { Time, TimeModel } = require('../model/timeModel')
 const { LogsTime } = require('../model/timeLogsModel')
+const { esp32 } = require('../model/esp32Model')
 
 const createToken = (_id) =>{
     //       payloader      the secret       user only have 3days to login and the token epxired
@@ -99,7 +100,7 @@ const getTimedFeed = async (req, res) => {
   };
   
   
-// FeederShare hardware (Logic) - OIST Timed Feed
+// FeederShare hardware (Logic) - POST Timed Feed
 const postTimedFeed = async (req,res) => {
     const {userId, time} = req.body
     if (!userId || !time) {
@@ -186,4 +187,29 @@ const getLogsTimedFeed = async (req, res) => {
   }
 };
 
-module.exports = { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed, logsTimeFeed, getLogsTimedFeed }
+const esp32CamID = async (req, res) => {
+  const { userID, esp32ID } = req.body;
+
+  const esp32data = await esp32.findOneAndUpdate(
+    { userId: userID }, // Find document by userId
+    { 
+      userId: userID,    // Ensure userId is set if no match is found
+      esp32ID: esp32ID   // Set or update the esp32ID
+    },
+    { 
+      new: true,         // Return the updated document (or newly inserted one)
+      upsert: true       // Insert a new document if no match is found
+    });
+  if (!esp32data) {
+    return res.status(500).json({ message: "User not found or update failed" });
+  }
+
+  res.status(200).json({
+    message: esp32data ? "ESP32 ID updated successfully" : "New ESP32 ID inserted successfully",
+    esp32data
+  });
+
+  res.status(200).json({ message: "ESP32 ID updated successfully", esp32data });
+};
+
+module.exports = { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed, logsTimeFeed, getLogsTimedFeed, esp32CamID }

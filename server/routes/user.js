@@ -1,6 +1,16 @@
 const express = require('express')
 
-const { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed, logsTimeFeed, getLogsTimedFeed } = require('../controller/userController')
+const { loginUser, 
+        registerUser, 
+        getUser, 
+        manualActivation, 
+        getTimedFeed, 
+        postTimedFeed, 
+        deleteTimedFeed, 
+        logsTimeFeed, 
+        getLogsTimedFeed,
+        esp32CamID
+      } = require('../controller/userController')
 
 const router = express.Router()
 
@@ -30,6 +40,9 @@ router.post('/logs-feed', logsTimeFeed)
 
 // FeederShare get time feed logs
 router.get('/:id/get-logs', getLogsTimedFeed)
+
+// FeederShare update esp32 id
+router.patch('/esp32',esp32CamID)
 
 router.get("/stream", (req, res) => {
     res.redirect(`http://192.168.100.32/stream`);
