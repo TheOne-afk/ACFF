@@ -1,6 +1,6 @@
 const express = require('express')
 
-const { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed, logsTimeFeed } = require('../controller/userController')
+const { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed, logsTimeFeed, getLogsTimedFeed } = require('../controller/userController')
 
 const router = express.Router()
 
@@ -27,6 +27,9 @@ router.delete('/delete-time', deleteTimedFeed)
 
 // FeederShare time feed logs
 router.post('/logs-feed', logsTimeFeed)
+
+// FeederShare get time feed logs
+router.get('/:id/get-logs', getLogsTimedFeed)
 
 router.get("/stream", (req, res) => {
     res.redirect(`http://192.168.100.32/stream`);

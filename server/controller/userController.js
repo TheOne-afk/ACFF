@@ -99,7 +99,7 @@ const getTimedFeed = async (req, res) => {
   };
   
   
-
+// FeederShare hardware (Logic) - OIST Timed Feed
 const postTimedFeed = async (req,res) => {
     const {userId, time} = req.body
     if (!userId || !time) {
@@ -119,6 +119,7 @@ const postTimedFeed = async (req,res) => {
     }
 }
 
+// FeederShare - Remove Fime feed
 const deleteTimedFeed = async (req,res) => {
     const { userId, time } = req.body;
 
@@ -145,6 +146,7 @@ const deleteTimedFeed = async (req,res) => {
   }
 }
 
+// Post Logs Timed Feed
 const logsTimeFeed = async (req,res) => {
   const {userId, timestamp, status} = req.body
     try{
@@ -162,4 +164,26 @@ const logsTimeFeed = async (req,res) => {
     }
 }
 
-module.exports = { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed, logsTimeFeed }
+// Get Logs Timed Feed
+const getLogsTimedFeed = async (req, res) => {
+  const { id: userId } = req.params;
+
+  if (!userId) {
+    return res.status(400).json({ error: "User ID is required." });
+  }
+
+  try {
+    // Find times for the specific user, sorted by 'time'
+    const times = await LogsTime.find({ userId }).sort({ time: 1 });
+
+    if (!times.length) {
+      return res.status(404).json({ message: "No times found for this user." });
+    }
+
+    res.status(200).json(times);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+module.exports = { loginUser, registerUser, getUser, manualActivation, getTimedFeed, postTimedFeed, deleteTimedFeed, logsTimeFeed, getLogsTimedFeed }
