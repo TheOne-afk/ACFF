@@ -11,6 +11,9 @@ const logsTimeSchema = new Schema({
     },
     status: {
         type: String
+    },
+    result: {
+        type: String
     }
 })
 
