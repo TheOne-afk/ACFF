@@ -7,7 +7,7 @@ const Navbar = ({children}:{
 })=>{
     return(
         /* Header */
-        <header className='py-4 px-10 fixed inset-0 border-b-[2px] h-fit' >
+        <header className='py-4 px-10 fixed inset-0 bg-white z-10 border-b-[2px] h-fit' >
             {/* Navbar */}
             <nav className='flex items-center justify-between' >
                 <Direct 
