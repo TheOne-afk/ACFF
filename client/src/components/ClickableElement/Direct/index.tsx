@@ -7,7 +7,9 @@ const Direct = ({image, size, text, color, filter, font_size}: {
     font_size: string
 }) =>{
     return(
-        <div className='flex items-center cursor-pointer flex-row' >
+        <div className='flex items-center cursor-pointer flex-row
+                        md:justify-center md:items-center
+        ' >
                 <div className="flex items-end justify-center" >
                 <img 
   src={image} 

@@ -36,7 +36,8 @@ const SignIn = () =>{
                 
             }}
             >
-                <div className=" flex flex-col justify-center items-center w-full0" >
+                <div className=" flex flex-col justify-center items-center w-full
+                " >
                     <h1 className="text-4xl font-[1000] text-black
                                     max-sm:text-2xl
                     " >Welcome Back!</h1>
@@ -58,7 +59,8 @@ const SignIn = () =>{
                 onchange={(event)=> setSigninUsername(event.target.value)}
                 value={signin_username}
                 />
-                <div className="w-full" >
+                <div className="w-full
+                " >
                 <FormField
                 placeholder="Enter your password"
                 label="Password"
@@ -71,11 +73,12 @@ const SignIn = () =>{
                 text="Login"
                 className="rounded-full w-full py-4 text-lg
                            max-sm:text-sm max-sm:py-2
+                           md:text-md md:py-3
                 "
                 />
                 <div className="relative w-full h-[1px] bg-black/50" >
                     <span className="absolute px-4 py-2 left-1/2 top-1/2 bg-custom_white -translate-x-1/2 -translate-y-1/2
-                                     max-sm:text-xs
+                                     max-sm:text-xs max-sm:py-0
                     " >or</span>
                 </div>
                 <h1 className="text-black text-md font-semibold

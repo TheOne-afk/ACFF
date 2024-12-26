@@ -17,6 +17,7 @@ const FormField = ({placeholder, label, type,onchange,value}:{
             ${value ? 'border-primary border-[2px]' : 'border-black'}
             text-lg py-2 px-4 rounded-md border-[1px] outline-none
             max-sm:text-sm
+            md:text-md
             `} type={type === "confirm_password" ? "password" : type} name={type} id={type === "confirm_password" ? "confirm_password" : type} placeholder={placeholder}/>
         </div>
     )
