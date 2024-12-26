@@ -2,7 +2,6 @@ import Paw from "../../assets/svg/Pam.svg"
 import Paw2 from "../../assets/svg/Pam_2.svg"
 import Form from "../../components/Container/Form"
 import FormField from "../../components/Fields/FormField"
-import TextDirect from "../../components/ClickableElement/TextDirect"
 import PrimaryButton from "../../components/Buttons/Primary"
 import { Link } from "react-router-dom"
 import { useState } from "react"
@@ -38,8 +37,12 @@ const SignIn = () =>{
             }}
             >
                 <div className=" flex flex-col justify-center items-center w-full0" >
-                    <h1 className="text-4xl font-[1000] text-black" >Welcome Back!</h1>
-                    <p className="text-sm" >Manage your cat's meals effortlessly and connect with fellow pet lovers!</p>
+                    <h1 className="text-4xl font-[1000] text-black
+                                    max-sm:text-2xl
+                    " >Welcome Back!</h1>
+                    <p className="text-sm
+                                  max-sm:text-xs max-sm:text-center
+                    " >Manage your cat's meals effortlessly and connect with fellow pet lovers!</p>
                 </div>
                 {
                     error && <div className="bg-red-500/70 w-full p-2 rounded text-center font-medium text-custom_white" >
@@ -66,14 +69,22 @@ const SignIn = () =>{
                 </div>
                 <PrimaryButton
                 text="Login"
-                className="rounded-full w-full py-4 text-lg"
+                className="rounded-full w-full py-4 text-lg
+                           max-sm:text-sm max-sm:py-2
+                "
                 />
                 <div className="relative w-full h-[1px] bg-black/50" >
-                    <span className="absolute px-4 py-2 left-1/2 top-1/2 bg-custom_white -translate-x-1/2 -translate-y-1/2" >or</span>
+                    <span className="absolute px-4 py-2 left-1/2 top-1/2 bg-custom_white -translate-x-1/2 -translate-y-1/2
+                                     max-sm:text-xs
+                    " >or</span>
                 </div>
-                <h1 className="text-black text-md font-semibold" >New to FeederShare?
+                <h1 className="text-black text-md font-semibold
+                                 max-sm:text-sm
+                " >New to FeederShare?
                     <Link to="/register">
-                    <span className="text-primary cursor-pointer text-bold" > Register now</span>
+                    <span className="text-primary cursor-pointer text-bold
+                                       max-sm:text-sm
+                    " > Register now</span>
                     </Link>
                 </h1>
             </Form>

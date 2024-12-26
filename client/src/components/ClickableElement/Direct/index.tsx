@@ -9,7 +9,16 @@ const Direct = ({image, size, text, color, filter, font_size}: {
     return(
         <div className='flex items-center cursor-pointer flex-row' >
                 <div className="flex items-end justify-center" >
-                <img src={image} alt="icon" height={size} width={size} style={{filter: `${filter}`}} />
+                <img 
+  src={image} 
+  alt="icon" 
+  className="w-16 
+  max-sm:w-10 
+  md:w-10 
+  lg:w-16 
+  xl:w-20" 
+  style={{ filter: `${filter}` }} 
+/>
                 <h1 className={`${font_size} font-semibold ${color}`} >{text}</h1>
                 </div>
         </div>
