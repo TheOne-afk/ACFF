@@ -77,8 +77,7 @@ const SignIn = () =>{
                 "
                 />
                 <div className="relative w-full h-[1px] bg-black/50" >
-                    <span className="absolute px-4 py-2 left-1/2 top-1/2 bg-custom_white -translate-x-1/2 -translate-y-1/2
-                                     max-sm:text-xs max-sm:py-0
+                    <span className="absolute px-4 py-0 left-1/2 top-1/2 bg-custom_white -translate-x-1/2 -translate-y-1/2 text-xs
                     " >or</span>
                 </div>
                 <h1 className="text-black text-md font-semibold

@@ -19,13 +19,11 @@ const Form = ({children, submit}: {
             md:h-full md:w-full md:rounded-none md:flex-col md:overflow-auto
             xl:w-4/6 xl:rounded-lg xl:shadow-2xl xl:flex xl:h-5/6 xl:flex-row xl:overflow-hidden
         " >
-            <div className="h-full w-3/6 bg-custom-gradient 
-                            max-sm:w-full max-sm:h-fit
+            <div className="h-fit w-full bg-custom-gradient 
                             md:w-full
                             xl:h-full
             " > 
-            <div className="h-fit w-full pl-8 pt-12 pr-3 flex flex-col
-            max-sm:p-2 max-sm:gap-2
+            <div className="h-fit w-full p-4 flex flex-col gap-3
             md:p-2 md:gap-4
             lg:gap-5
             xl:gap-4
@@ -43,14 +41,12 @@ const Form = ({children, submit}: {
                            xl:text-4xl
                 '
                 />
-            <h1 className="text-custom_white font-extrabold
-                             max-sm:text-xl
+            <h1 className="text-custom_white font-extrabold text-2xl
                              md:text-3xl md:text-center
                              lg:text-3xl
                              xl:text-5xl
             " >AUTOMATIC CAT FOOD FEEDER</h1>
-            <p className="text-custom_white/80
-                            max-sm:text-xs
+            <p className="text-custom_white/80 text-xs text-justify
                             md:text-md md:text-center
                             lg:text-sm
                             xl:text-md
@@ -73,8 +69,7 @@ const Form = ({children, submit}: {
         />
       </div>
             </div>
-            <form className=" h-full bg-custom_white w-4/6 flex flex-col justify-evenly p-5 px-10 items-center
-                             max-sm:w-full max-sm:h-full max-sm:p-3
+            <form className=" h-full w-full bg-custom_white flex flex-col justify-evenly p-4 gap-5 items-center
                              md:w-full md:h-fit md:p-7 md:gap-6
             " onSubmit={submit} method="POST"> 
             {children}
