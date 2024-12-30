@@ -16,16 +16,18 @@ const Form = ({children, submit}: {
     z-10 
     bg-custom_white 
     overflow-auto
-            md:h-full md:w-full md:rounded-none md:flex-col md:overflow-auto
-            xl:w-4/6 xl:rounded-lg xl:shadow-2xl xl:flex xl:h-5/6 xl:flex-row xl:overflow-hidden
+            md:h-full md:w-full md:rounded-none md:flex-col md:overflow-auto md:justify-between
+            lg:w-4/6 lg:rounded-lg lg:shadow-2xl lg:flex lg:h-5/6 lg:flex-row lg:overflow-hidden 
+            xl:w-4/6 xl:rounded-lg xl:shadow-2xl xl:flex xl:h-5/6 xl:flex-row xl:overflow-hidden 
         " >
-            <div className="h-fit w-full bg-custom-gradient 
+            <div className="relative h-fit w-full bg-custom-gradient 
                             md:w-full
-                            xl:h-full
+                            lg:h-full
+                            xl:h-full xl:w-5/6
             " > 
             <div className="h-fit w-full p-4 flex flex-col gap-3
             md:p-2 md:gap-4
-            lg:gap-5
+            lg:gap-4
             xl:gap-4
             " >
             <Direct 
@@ -54,15 +56,12 @@ const Form = ({children, submit}: {
                 cat's feeding schedule and connect with other
                 pet owners through our social media features.</p>
             </div>
-            <div className="absolute bottom-0 w-full bg-custom_white rounded-t-[150px] flex justify-center items-center
-            md:hidden
-            xl:hidden
-            ">
+            <div  className="absolute w-full h-auto bg-custom_white rounded-t-[150px] hidden bottom-0
+                              lg:flex lg:justify-center lg:items-center
+            " >
         <img
-         className="h-auto object-contain
-                    max-sm:hidden
-                    lg:w-52
-                    xl:w-full
+         className="object-contain
+                    lg:w-72
           "
           src={CatImage}
           alt="..."
@@ -71,6 +70,8 @@ const Form = ({children, submit}: {
             </div>
             <form className=" h-full w-full bg-custom_white flex flex-col justify-evenly p-4 gap-5 items-center
                              md:w-full md:h-fit md:p-7 md:gap-6
+                             lg:h-full
+                             xl:h-full
             " onSubmit={submit} method="POST"> 
             {children}
             </form>
