@@ -27,8 +27,8 @@ const Form = ({children, submit}: {
             " > 
             <div className="h-fit w-full p-4 flex flex-col gap-3
             md:p-2 md:gap-4
-            lg:gap-4
-            xl:gap-4
+            lg:gap-10 lg:justify-start lg:items-start lg:p-5
+            xl:gap-10
             " >
             <Direct 
                 image={MainIcon} 
@@ -44,20 +44,20 @@ const Form = ({children, submit}: {
                 '
                 />
             <h1 className="text-custom_white font-extrabold text-2xl
-                             md:text-3xl md:text-center
-                             lg:text-3xl
+                             md:text-3xl md:text-center 
+                             lg:text-4xl lg:text-start
                              xl:text-5xl
             " >AUTOMATIC CAT FOOD FEEDER</h1>
             <p className="text-custom_white/80 text-xs text-justify
                             md:text-md md:text-center
-                            lg:text-sm
+                            lg:text-sm lg:text-start
                             xl:text-md
             "> Welcome to FeederShare! Easily manage your
                 cat's feeding schedule and connect with other
                 pet owners through our social media features.</p>
             </div>
             <div  className="absolute w-full h-auto bg-custom_white rounded-t-[150px] hidden bottom-0
-                              lg:flex lg:justify-center lg:items-center
+                              lg:h-60 lg:flex lg:justify-center lg:items-center
             " >
         <img
          className="object-contain
